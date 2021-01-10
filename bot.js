@@ -1,4 +1,4 @@
-const { AkairoClient, CommandHandler, ListenerHandler  } = require('discord-akairo');
+const { AkairoClient, CommandHandler, ListenerHandler, InhibitorHandler } = require('discord-akairo');
 const { v4: uuidv4 } = require('uuid');
 const http = require('http');
 const https = require('https');
@@ -11,13 +11,15 @@ let link = mysql.createConnection({
   password: Config.MySQL.password,
   database: Config.MySQL.database
 });
+
 link.connect((e) => {
   if(e) throw e;});
+
 class MyClient extends AkairoClient {
   constructor() {
     super({
       // Options for Akairo go here.
-      ownerID: '760488599640211526',
+      ownerID: '108758603258712064',
     }, {
       // Options for discord.js goes here.
     });
@@ -25,10 +27,17 @@ class MyClient extends AkairoClient {
       directory: './commands/',
       prefix: '!' // or ['?', '!']
     });
+    this.commandHandler.loadAll();
+
     this.listenerHandler = new ListenerHandler(this, {
       directory: './listeners/'
     });
-    this.commandHandler.loadAll();
+
+    this.inhibitorHandler = new InhibitorHandler(this, {
+        directory: './inhibitors/'
+    });
+    this.commandHandler.useInhibitorHandler(this.inhibitorHandler);
+    this.inhibitorHandler.loadAll();
   }
 }
 

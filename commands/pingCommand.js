@@ -9,7 +9,6 @@ class PingCommand extends Command {
   }
 
   exec(message, args) {
-    client.emit("guildMemberAdd", message.member);
     return message.reply('Pong!');
   }
 }
