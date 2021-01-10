@@ -1,0 +1,23 @@
+var Configuration =
+  {
+    Discord: {
+      ClientToken: "",
+      ServerID: "",
+      DebugChannelID: ""
+    },
+    HTTP: {
+      Port: 80,
+    },
+    ESI: {
+      ClientID: '',
+      SecretKey: '',
+    },
+    MySQL: {
+      hostname: "",
+      username: "",
+      password: "",
+      database: ""
+    }
+  }
+
+module.exports = Configuration;
