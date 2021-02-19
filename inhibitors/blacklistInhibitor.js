@@ -21,15 +21,6 @@ class BlacklistInhibitor extends Inhibitor {
         super('blacklist', {
             reason: 'blacklist'
         })
-
-        // link.query("SELECT DiscordID FROM blacklist", (e, r) => {
-        //     if(e) throw e;
-
-        //     for(var i = 0; i < r.length; i++)
-        //     {
-        //         this.blacklist.push(r[i].DiscordID);
-        //     }
-        // });
     }
 
     async exec(message) {
